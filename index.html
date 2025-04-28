@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Blooming Flower</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #a7cfdf 0%, #23538a 100%);
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+        }
+
+        .stem {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 8px;
+            height: 200px;
+            background-color: #3d8c40;
+            transform: translateX(-50%);
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .leaf {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            background-color: #4CAF50;
+            border-radius: 50% 50% 50% 0;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .leaf:nth-child(1) {
+            bottom: 70px;
+            left: calc(50% + 8px);
+            transform: rotate(30deg);
+        }
+
+        .leaf:nth-child(2) {
+            bottom: 130px;
+            left: calc(50% - 50px);
+            transform: rotate(150deg);
+        }
+
+        .flower {
+            position: absolute;
+            bottom: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .bud {
+            position: relative;
+            width: 40px;
+            height: 60px;
+            background: linear-gradient(to top, #568203, #4a7023);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            z-index: 10;
+            animation: budTransform 4s forwards;
+        }
+
+        @keyframes budTransform {
+            0% {
+                background: linear-gradient(to top, #568203, #4a7023);
+                height: 40px;
+                width: 30px;
+            }
+            20% {
+                height: 50px;
+                width: 40px;
+            }
+            40% {
+                background: linear-gradient(to top, #568203, #9ACD32);
+            }
+            80% {
+                background: linear-gradient(to top, #DAA520, #FFD700);
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+            }
+            100% {
+                background: #FFD700;
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            }
+        }
+
+        .petal-container {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .petal {
+            position: absolute;
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(to bottom, #FF69B4, #FF1493);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transform-origin: bottom center;
+            bottom: 0;
+            left: 20px;
+            animation: bloom 4s forwards;
+            z-index: 1;
+        }
+
+        .petal:nth-child(1) {
+            transform: rotate(0deg) scale(0);
+            animation-delay: 1s;
+        }
+        .petal:nth-child(2) {
+            transform: rotate(60deg) scale(0);
+            animation-delay: 1.2s;
+        }
+        .petal:nth-child(3) {
+            transform: rotate(120deg) scale(0);
+            animation-delay: 1.4s;
+        }
+        .petal:nth-child(4) {
+            transform: rotate(180deg) scale(0);
+            animation-delay: 1.6s;
+        }
+        .petal:nth-child(5) {
+            transform: rotate(240deg) scale(0);
+            animation-delay: 1.8s;
+        }
+        .petal:nth-child(6) {
+            transform: rotate(300deg) scale(0);
+            animation-delay: 2s;
+        }
+
+        @keyframes bloom {
+            0% {
+                transform: rotate(var(--rotation, 0deg)) scale(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: rotate(var(--rotation, 0deg)) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            background-color: #8B4513;
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+        }
+
+        .grass {
+            position: absolute;
+            bottom: 20px;
+            width: 10px;
+            height: 30px;
+            background-color: #4CAF50;
+            border-radius: 0 10px 0 0;
+        }
+
+        .grass:nth-child(1) {
+            left: 20%;
+            height: 20px;
+            transform: rotate(-5deg);
+        }
+
+        .grass:nth-child(2) {
+            left: 30%;
+            height: 25px;
+            transform: rotate(5deg);
+        }
+
+        .grass:nth-child(3) {
+            left: 70%;
+            height: 15px;
+            transform: rotate(-10deg);
+        }
+
+        .grass:nth-child(4) {
+            left: 80%;
+            height: 22px;
+            transform: rotate(8deg);
+        }
+
+        .sun {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #FDB813 0%, #FDB813 70%, transparent 70%);
+            border-radius: 50%;
+            animation: glow 4s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px 2px rgba(253, 184, 19, 0.5);
+            }
+            to {
+                box-shadow: 0 0 20px 5px rgba(253, 184, 19, 0.8);
+            }
+        }
+
+        .title {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: "Georgia", serif;
+            font-size: 24px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        button {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+            transform: translateX(-50%) scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="title">Beautiful Blooming Flower</div>
+    <div class="container">
+        <div class="sun"></div>
+        <div class="ground"></div>
+        <div class="grass"></div>
+        <div class="grass"></div>
+        <div class="grass"></div>
+        <div class="grass"></div>
+        <div class="stem"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="flower">
+            <div class="petal-container">
+                <div class="petal" style="--rotation: 0deg;"></div>
+                <div class="petal" style="--rotation: 60deg;"></div>
+                <div class="petal" style="--rotation: 120deg;"></div>
+                <div class="petal" style="--rotation: 180deg;"></div>
+                <div class="petal" style="--rotation: 240deg;"></div>
+                <div class="petal" style="--rotation: 300deg;"></div>
+            </div>
+            <div class="bud"></div>
+        </div>
+    </div>
+    <button onclick="rebloom()">Bloom Again</button>
+
+    <script>
+        function rebloom() {
+            // Reset animations
+            const bud = document.querySelector('.bud');
+            const petals = document.querySelectorAll('.petal');
+            
+            // Reset bud
+            bud.style.animation = 'none';
+            bud.offsetHeight; // Trigger reflow
+            bud.style.animation = 'budTransform 4s forwards';
+            
+            // Reset petals
+            petals.forEach((petal, index) => {
+                petal.style.animation = 'none';
+                petal.offsetHeight; // Trigger reflow
+                petal.style.animation = 'bloom 4s forwards';
+                petal.style.animationDelay = (1 + (index * 0.2)) + 's';
+                petal.style.transform = `rotate(${index * 60}deg) scale(0)`;
+            });
+        }
+    </script>
+</body>
+</html>
